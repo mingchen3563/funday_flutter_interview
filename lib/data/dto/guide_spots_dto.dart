@@ -1,10 +1,6 @@
+import 'package:funday_flutter_interview/fund/extensions/map_extension.dart';
+
 class GuideSpotsDto {
-  // "id": 27,
-  //     "title": "臺北市立動物園",
-  //     "summary": null,
-  //     "url": "https://www.travel.taipei/audio/27",
-  //     "file_ext": null,
-  //     "modified": "2024-11-15 13:35:09 +08:00"
   final int id;
   final String title;
   final String? summary;
@@ -22,13 +18,17 @@ class GuideSpotsDto {
   });
 
   factory GuideSpotsDto.fromJson(Map<String, dynamic> json) {
-    return GuideSpotsDto(
-      id: json['id'],
-      title: json['title'],
-      summary: json['summary'],
-      url: json['url'],
-      fileExt: json['file_ext'],
-      modified: DateTime.parse(json['modified']),
-    );
+    try {
+      return GuideSpotsDto(
+        id: json.getOrElse('id', 0),
+        title: json.getOrElse('title', ''),
+        summary: json.getOrElse('summary', null),
+        url: json.getOrElse('url', ''),
+        fileExt: json.getOrElse('file_ext', null),
+        modified: DateTime.parse(json.getOrElse('modified', '')),
+      );
+    } catch (e) {
+      throw Exception('Failed to decode response body: $e');
+    }
   }
 }
