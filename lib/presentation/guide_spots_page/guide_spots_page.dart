@@ -67,7 +67,7 @@ class _GuideSpotsPageState extends State<GuideSpotsPage> {
           _wasLoadingMore = state.isLoadingMore;
 
           return Scaffold(
-            appBar: AppBar(title: Text('Funday')),
+            appBar: AppBar(title: Row(children: [Text('Funday')])),
             body: SafeArea(
               child: Stack(
                 children: [

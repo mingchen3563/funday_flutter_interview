@@ -92,10 +92,7 @@ class _GuideSpotDetailPageState extends State<GuideSpotDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.guideSpot.title),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
+      appBar: AppBar(title: Row(children: [Text('Funday')])),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
