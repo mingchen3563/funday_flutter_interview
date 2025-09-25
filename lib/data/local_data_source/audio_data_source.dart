@@ -3,18 +3,21 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class AudioDataSource {
+  final String? systemFolderPath;
+  AudioDataSource({this.systemFolderPath});
+
   final String _audioDirectory = '/audio';
   Future<String> saveAudio(String fileName, File audioFile) async {
-    final filePath = await getApplicationDocumentsDirectory();
+    final filePath = systemFolderPath ?? (await getTemporaryDirectory()).path;
 
-    final file = File('${filePath.path}$_audioDirectory/$fileName');
+    final file = File('$filePath$_audioDirectory/$fileName');
     await file.writeAsBytes(audioFile.readAsBytesSync());
     return file.path;
   }
 
   Future<String?> getAudioPath(String fileName) async {
-    final filePath = await getApplicationDocumentsDirectory();
-    final file = File('${filePath.path}$_audioDirectory/$fileName');
+    final filePath = systemFolderPath ?? (await getTemporaryDirectory()).path;
+    final file = File('$filePath$_audioDirectory/$fileName');
     if (file.existsSync()) {
       return file.path;
     }
@@ -29,8 +32,8 @@ class AudioDataSource {
   }
 
   Future<bool> deleteAudio(String fileName) async {
-    final filePath = await getApplicationDocumentsDirectory();
-    final file = File('${filePath.path}$_audioDirectory/$fileName');
+    final filePath = systemFolderPath ?? (await getTemporaryDirectory()).path;
+    final file = File('$filePath$_audioDirectory/$fileName');
     if (file.existsSync()) {
       await file.delete();
       return true;

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
@@ -44,5 +45,18 @@ class ApiHandler {
         'Failed to post data: ${response.statusCode} - ${response.body}',
       );
     }
+  }
+
+  Future<File?> getFile({required String url}) async {
+    final tempDir = await Directory.systemTemp.createTemp('audio_temp');
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final bytes = response.bodyBytes;
+      final file = File('${tempDir.path}/temp.mp3');
+      await file.writeAsBytes(bytes);
+      return file;
+    }
+    return null;
   }
 }

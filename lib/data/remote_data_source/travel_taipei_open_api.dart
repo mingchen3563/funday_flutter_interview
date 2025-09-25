@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:funday_flutter_interview/data/dto/guide_spots_dto.dart';
 import 'package:funday_flutter_interview/fund/api_handler.dart';

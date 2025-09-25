@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:funday_flutter_interview/data/remote_data_source/travel_taipei_open_api.dart';
 import 'package:funday_flutter_interview/fund/api_handler.dart';
-import 'package:http/http.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
