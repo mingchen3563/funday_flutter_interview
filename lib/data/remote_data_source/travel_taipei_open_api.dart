@@ -19,7 +19,7 @@ class TravelTaipeiOpenApi {
 
     try {
       final List<dynamic> data = response['data'];
-      debugPrint('data: $data');
+      // debugPrint('data: $data');
       return data.map((e) => GuideSpotsDto.fromJson(e)).toList();
     } catch (e) {
       throw Exception('Failed to decode response body: $e');

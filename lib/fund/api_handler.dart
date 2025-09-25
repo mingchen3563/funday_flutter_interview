@@ -13,8 +13,8 @@ class ApiHandler {
     debugPrint('GET $url');
 
     final response = await http.get(Uri.parse(url), headers: headers);
-    debugPrint('GET $url: ${response.statusCode}');
-    debugPrint('GET $url: ${response.body}');
+    // debugPrint('GET $url: ${response.statusCode}');
+    // debugPrint('GET $url: ${response.body}');
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
@@ -35,8 +35,8 @@ class ApiHandler {
       headers: headers,
       body: jsonEncode(body),
     );
-    debugPrint('POST $url: ${response.statusCode}');
-    debugPrint('POST $url: ${response.body}');
+    // debugPrint('POST $url: ${response.statusCode}');
+    // debugPrint('POST $url: ${response.body}');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return jsonDecode(response.body);
